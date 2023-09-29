@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Final Malfettani</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+</head>
+
+<body class="fondoNegro">
+
+    <header class="mt-3">
+        <nav class="navbar navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
+            <div class="container">
+                <a class="navbar-brand" href="#">Medicare</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="#">Inicio</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Servicios</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">FAQs</a>
+                        </li>
+                    </ul>
+                    <form class="d-flex m-1">
+                        <button type="button" class="btn btn-success" data-bs-toggle="modal"
+                            data-bs-target="#exampleModal" id="headerIniciarSesion">
+                            Login
+                        </button>
+                    </form>
+                    <form class="d-flex m-1">
+                        <button type="button" class="btn btn-danger" id="salir" style="display: none;">Salir</button>
+                    </form>
+                </div>
+            </div>
+        </nav>
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content bg-dark text-light">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-2" id="exampleModalLabel">Iniciar Sesion</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label for="usuario" class="form-label">Usuario:</label>
+                            <input type="text" class="form-control" id="usuario" placeholder="Ingrese su usuario">
+                        </div>
+                        <div class="mb-3">
+                            <label for="contrasena" class="form-label">Contraseña:</label>
+                            <input type="password" class="form-control" id="contrasena"
+                                placeholder="Ingrese su contraseña">
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
+                        <button type="button" class="btn btn-success" id="iniciarSesion">Login</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="container mt-5">
+            <div class="row align-items-center">
+                <div class="letraBlanca col-md-6">
+                    <h1 id="nombreUsuarioDOM"></h1>
+                    <h3 class="text-success">Te damos la bienvenida</h3>
+                    <p class="fs-5">Un software médico flexible, diseñado para adaptarse a las necesidades de cada
+                        institución de salud. Confía en nuestro software de historias clínicas digitales para mantener
+                        la información de tus pacientes segura y cumplir con las regulaciones de privacidad. Moderniza
+                        tu consulta médica con tranquilidad.<br>
+                    </p>
+                </div>
+                <div class="col-md-6">
+                    <img src="img/logoMc.png" alt="Imagen historia clinica" class="img-fluid" width="500px">
+                </div>
+            </div>
+        </section>
+        <section class="container mt-3 text-center">
+            <div class="letraBlanca">
+                <h3 class="text-success">Hospitales Incorporados</h3>
+            </div>
+            <div class="mt-5">
+                <div id="hospitalesContenier" class="row"></div>
+            </div>
+        </section>
+        <section class="container text-center pantallaCompleta py-5 d-flex align-items-center justify-content-center">
+            <div id="divAtencion">
+                <div class="card text-bg-warning mb-3" style="max-width: 18rem;">
+                    <div class="card-header">¡Atencion!</div>
+                    <div class="card-body">
+                        <h5 class="card-title">Debes estar logeado para tener acceso a las historias clínicas</h5>
+                    </div>
+                </div>
+            </div>
+            <div id="divHistoriasClinicas">
+                <div class="mb-3 mt-4">
+                    <button type="button" class="btn btn-success" id="agregarHistoria">Agregar Historia</button>
+                </div>
+                <div id="historiasClinicasContenedor"></div>
+            </div>
+            <!-- Modal -->
+            <div class="modal fade" id="modalEjemplo" tabindex="-1" aria-labelledby="modalEjemploLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="modalEjemploLabel">Paciente</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                aria-label="Cerrar"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="mb-3">
+                                <label for="nombrePaciente" class="form-label">Nombre del Paciente:</label>
+                                <input type="text" class="form-control" id="nombrePaciente"
+                                    placeholder="Ingrese el nombre del paciente">
+                            </div>
+                            <div class="mb-3">
+                                <label for="grupoSanguineo" class="form-label">Grupo Sanguíneo:</label>
+                                <input type="text" class="form-control" id="grupoSanguineo"
+                                    placeholder="Ingrese el grupo sanguíneo">
+                            </div>
+                            <div class="mb-3">
+                                <label for="tratamientos" class="form-label">Tratamientos:</label>
+                                <input type="text" class="form-control" id="tratamientos"
+                                    placeholder="Ingrese los tratamientos">
+                            </div>
+                            <div class="mb-3">
+                                <label for="alergias" class="form-label">Alergias:</label>
+                                <input type="text" class="form-control" id="alergias"
+                                    placeholder="Ingrese las alergias">
+                            </div>
+                            <div class="mb-3">
+                                <label for="condicion" class="form-label">Condición:</label>
+                                <input type="text" class="form-control" id="condicion"
+                                    placeholder="Ingrese la condición">
+                            </div>
+                            <div class="mb-3">
+                                <label for="anotaciones" class="form-label">Anotaciones:</label>
+                                <input type="text" class="form-control" id="anotaciones"
+                                    placeholder="Ingrese las anotaciones">
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                            <button type="button" class="btn btn-primary">Guardar cambios</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+    <!-- sweet alert -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- toastify -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <!-- web app -->
+    <script src="app.js"></script>
+
+</body>
+
+</html>

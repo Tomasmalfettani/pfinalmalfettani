@@ -1,0 +1,20 @@
+[
+    {
+        "nombre": "Hospital Militar Central Cirujano Mayor Dr. Cosme Argerich",
+        "img": "https://clinica-web.com.ar/wp-content/uploads/2016/01/hospital-militar-central.jpg",
+        "alt": "Hospital Militar Central Cirujano Mayor Dr. Cosme Argerich",
+        "direccion": "Av. Luis María Campos 726"
+    },
+    {
+        "nombre": "Hospital General de Agudos Dr. Juan A. Fernández",
+        "img": "https://s3-sa-east-1.amazonaws.com/modernabuenosaires/img/obras/galeria/151_1414526383.jpg",
+        "alt": "Hospital Fernandez",
+        "direccion": "Av. Cerviño 3356, C1425AGP CABA"
+    },
+    {
+        "nombre": "Hospital General de Agudos Bernardino Rivadavia",
+        "img": "https://upload.wikimedia.org/wikipedia/commons/e/e6/Hospital_Rivadavia_%28fachada%29.JPG",
+        "alt": "Hospital General de Agudos Bernardino Rivadavia",
+        "direccion": "Av. Gral. Las Heras 2670"
+    }
+]
